@@ -41,6 +41,7 @@ export default {
         width: 100%;
         height: 35px;
         padding: 2px;
+        margin-top:5%;
         background:white;
         box-sizing: border-box;
         display: flex;

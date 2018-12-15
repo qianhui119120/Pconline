@@ -50,8 +50,11 @@ import {swiper, swiperSlide} from 'vue-awesome-swiper'
     .swiper-pagination{
         width: 100%;
         height: 10%;
-        /* position: absolute;
-        top: 90%; */
+        position: absolute;
+        top: 100%;
+    }
+    .swiper-container{
+        overflow: visible;
     }
     .swiper-pagination-bullet{
         border-radius: 0;
