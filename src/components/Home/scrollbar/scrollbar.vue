@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
-        <swiper :options="swiperOption" :not-next-tick="notNextTick" ref="mySwiper">
-            <swiper-slide v-for="(item,key) in swiperList" :key="item+key">
+        <swiper :options="swiperOption"  ref="mySwiper" v-if="swiperList.length>0">
+            <swiper-slide v-for="(item,key) in swiperList" :key="item+key" >
                 <img class="swiper-img" :src="item.imageUrl" alt="">
             </swiper-slide>
             <div class="swiper-pagination"  slot="pagination"></div>
@@ -10,46 +10,57 @@
 </template>
 
 <script>
+import {swiper, swiperSlide} from 'vue-awesome-swiper'
     export default{
         name:'HomeSwiper',
+         components: {
+            swiper,
+            swiperSlide,
+        },
         data(){
             return {
-				notNextTick: true,
-                // 使用swiper
-                swiperOption:{
-                    // 小圆点
-                    pagination:'.swiper-pagination',
-                    // 轮播无缝切换
-                    loop:true,
-                    // 自动轮播
-					autoplay:3000,
-					direction: 'horizontal',
-                },
-                swiperList:[]
+                swiperList:[],
+                swiperOption: {
+                    pagination: {
+                        el: '.swiper-pagination'
+                    },
+                    slidesPerView: 1,
+                    autoplay: {
+                        delay: 1000,
+                        disableOnInteraction: false
+                    },
+                    spaceBetween: 30,
+                    loop: true
+                 
+            }
             }
 		},
-		// computed: {
-		// 	swiper() {
-		// 		// console.log(this.$refs.mySwiper.swiper)
-		// 		return this.$refs.mySwiper.swiper
-		// 	}
-		// },
 		mounted(){
 			this.$http.get('http://localhost:3000/zh-cn/api/focus')
 			.then((resp)=>{
-				this.swiperList = resp.data.focus;
-				// console.log(resp.data.focus);
+			this.swiperList =  resp.data.focus
 			})
-			// this.swiper.slideNext(10, 3000, true);
 		}
     }
 </script>
 
 <style>
+@import '../../../../node_modules/swiper/dist/css/swiper.css';
+
+    .swiper-pagination{
+        width: 100%;
+        height: 10%;
+        /* position: absolute;
+        top: 90%; */
+    }
+    .swiper-pagination-bullet{
+        border-radius: 0;
+    }
     .swiper-pagination-bullet-active{
-        background:rgb(20, 17, 211);
+        background:rgb(221, 78, 11);
     }
     .wrapper{
+        position: relative;
         background:white;
         width:100%;
         height:31.25%;

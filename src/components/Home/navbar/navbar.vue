@@ -2,7 +2,7 @@
     <ul class="navbar">
         <li class="checkList" v-for="(item,key) in checkList"
         :key="item+key" @click="changeComponent(item)"
-        :class="navbarName == item.name?'active':''">
+        :class="navbarName == item.path?'active':''">
         {{item.name}}</li>
     </ul>
 </template>
@@ -11,7 +11,7 @@
 export default {
     data(){
         return{
-            navbarName:"精选",
+            navbarName:"/home/jx",
             checkList:[
                 {name:"精选",path:"/home/jx"},
                 {name:"优惠",path:"/home/yh"},
@@ -24,12 +24,14 @@ export default {
     methods:{
         changeComponent(item){
             this.$router.push({path:item.path})
-            this.navbarName = item.name;
+            this.navbarName = item.path;
         }
     },
-    // mounted(){
-    //     this.$router.push({name:this.navbarName})
-    // }
+    created(){
+        // console.log(window.location.hash.substring(1));
+        this.navbarName = window.location.hash.substring(1);
+        // this.$router.push({name:this.navbarName})
+    }
 
 }
 </script>

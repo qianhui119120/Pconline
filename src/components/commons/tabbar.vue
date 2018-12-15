@@ -23,11 +23,13 @@ export default {
     methods:{
         renderView(item){
             this.$router.push({path:item.path});
-            this.name=item.name
+            this.name=item.name;
         }
     },
-    // mounted(){
-    //     this.$router.push({name:this.name})
+    // created(){
+    //     console.log(window.location.hash.substring(1));
+    //     this.name = window.location.hash.substring(1);
+        // this.$router.push({name:this.name})
     // }
 }
 </script>

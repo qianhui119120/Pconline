@@ -8,6 +8,7 @@ import yh from '@/components/Home/shoppingList/yh'
 import ht from '@/components/Home/shoppingList/ht'
 import fx from '@/components/Home/shoppingList/fx'
 import yc from '@/components/Home/shoppingList/yc'
+import loginPage from '@/components/Profile/login/loginPage/loginPage'
 
 Vue.use(Router)
 
@@ -15,14 +16,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect:'/home/jx'
+      redirect:'/home'
     },
     {
       path:"/home",
       component:Home,
       name:"首页",
       children:[
-        // {path:"/shoppingList",redirect:"jx"},
+        {path:"/home",redirect:"jx"},
         {path:"jx",component:jx,name:"精选"},
         {path:"yh",component:yh,name:"优惠"},
         {path:"ht",component:ht,name:"海淘"},
@@ -38,7 +39,15 @@ export default new Router({
     {
       path:"/profile",
       component:Profile,
-      name:"我的"
+      name:"我的",
+      children:[
+        // {
+        //   path:"/login",component:login,name:"登陆",
+          // children:[
+            {path:"loginPage",component:loginPage,name:"登陆页面"}
+        //   ]
+        // }
+      ]
     }
    
   ]

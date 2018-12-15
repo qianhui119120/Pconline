@@ -26,9 +26,9 @@ export default {
             this.goodsList = resp.data.data;
         })
     },
-    created(){
-        console.log(window.location);
-    }
+    // created(){
+    //     console.log(window.location.hash);
+    // }
 }
 </script>
 
